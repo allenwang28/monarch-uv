@@ -1,0 +1,26 @@
+[project]
+name = "monarch-uv-example"
+version = "0.1.0"
+description = "A barebones example of using torchmonarch with uv"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torchmonarch",
+]
+
+[tool.uv]
+# Primary index for PyTorch nightly builds with CUDA 12.8 support
+index-url = "https://download.pytorch.org/whl/nightly/cu128"
+# Fallback to PyPI for packages not found in the primary index
+extra-index-url = ["https://pypi.org/simple"]
+
+# Internal Meta index for MSL packages
+# Use [[tool.uv.index]] to add additional named indexes
+[[tool.uv.index]]
+name = "msl_main"
+url = "https://api.pyx.dev/simple/meta/main"
+
+# Specify that internal packages should come from our index, not public PyPI
+# Uncomment the following section to pin specific packages to the internal index:
+# [tool.uv.sources]
+# torchmonarch = { index = "msl_main" }
